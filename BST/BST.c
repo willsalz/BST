@@ -39,13 +39,17 @@ BST bst_create(void){
     return new_bst;
 }
 
-void bst_destroy(BST tree){
-    if (NULL == tree || NULL == tree->root) {
+void bst_destroy(BST* tree){
+    BST t = *tree;
+    
+    if (NULL == t || NULL == t->root) {
         return;
     }
     
-    bst_destroy_node(tree->root);
-    tree->root = NULL;
+    bst_destroy_node(t->root);
+    t->root = NULL;
+    free(t);
+    *tree = NULL;
 }
 
 void bst_insert(BST tree, const BSTType val){
@@ -82,7 +86,10 @@ void bst_print(BST const tree){
         return;
     }
     
+    fprintf(stdout, "*****BST*****\n");
     bst_print_nodes(tree->root);
+    fprintf(stdout, "\n\n");
+    
     
 }
 
@@ -184,7 +191,6 @@ static void bst_print_nodes(bst_node_t* root){
         return;
     }
     
-    bst_print_node(root, 0);
     bst_print_node(root, 0);
 }
 

@@ -31,7 +31,7 @@ typedef struct bst_s bst_t;
 typedef bst_t* BST;
 
 BST bst_create(void);
-void bst_destroy(BST tree);
+void bst_destroy(BST* tree);
 void bst_insert(BST tree, BSTType const val);
 bool bst_remove(BST tree, BSTType const val);
 bool bst_find(const BST tree, BSTType const val);
